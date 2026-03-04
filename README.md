@@ -1,0 +1,2 @@
+# ayayay
+My AI Resources
