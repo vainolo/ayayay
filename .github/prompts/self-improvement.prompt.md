@@ -21,6 +21,7 @@ Analyze the conversation history and identify:
 - **Tool Usage**: Which tools were used? Were they appropriate? Any redundant calls?
 - **Response Quality**: Were responses clear, concise, and accurate?
 - **User Satisfaction**: Did the user need to clarify or correct you? How often?
+- **Scope Creep Events**: Identify any files/scripts created without explicit user request and whether they were necessary.
 
 ### 1.2 Self-Critique Components
 Evaluate your performance using these rubrics (score 0.0-1.0 for each):
@@ -343,6 +344,15 @@ A successful self-improvement session results in:
 - **Faster completion**: Similar tasks complete with fewer iterations
 - **Better code quality**: Future changes require fewer revisions
 - **Improved user satisfaction**: Less clarification needed
+
+## Fast Failure-Prevention Checklist
+
+Before implementing fixes, quickly verify:
+
+1. If claiming absence/failure, do I have at least 2 independent signals?
+2. Am I changing the canonical source-of-truth file for this behavior?
+3. Am I creating any new file the user did not ask for?
+4. Have I validated the smallest viable fix before expanding scope?
 
 ---
 

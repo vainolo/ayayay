@@ -37,3 +37,8 @@ Always test code changes before completing a task, except when testing would be 
 - When auth/credentials are needed, ask the user to provide them rather than skipping tests
 - Clean up test resources (temporary rules, test data) after validation
 - For configuration/documentation changes, validate syntax and verify no broken references remain
+
+## Debugging Assertions & Scope Discipline
+
+- During debugging, prefer minimal fixes in the canonical script or module already responsible for the behavior. Do not add new helper/installer scripts unless the user asks for them.
+- When there is a single source of truth for behavior (for example, one script that manages NSG rules), place the change there rather than layering workaround logic in other scripts.
