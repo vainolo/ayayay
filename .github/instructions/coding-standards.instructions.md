@@ -7,6 +7,22 @@ Keep changes minimal and focused.
 Add short comments only where code intent is not obvious.
 Do not repeat yourself (DRY principle). Consolidate duplicate code into reusable functions or modules.
 
+## Shared Utilities & Refactoring
+
+When multiple scripts repeat the same patterns:
+- Extract common functionality into a shared utility module (e.g., `common.ps1`, `helpers.ts`)
+- Use consistent naming conventions for shared functions across all consumers
+- Place shared utilities in the root or a dedicated `lib/` directory
+- Update all consumers to use the shared version rather than maintaining duplicates
+- Avoid creating multiple utility files for similar concerns—consolidate into one
+
+## Configuration Management
+
+- Extract config loading and validation into reusable functions
+- Make optional parameters with sensible defaults rather than requiring all config keys
+- Validate required keys at load time, not at usage time
+- Return structured objects (not dictionaries) from config functions for type safety where possible
+
 ## Naming & Behavior Alignment
 
 Ensure script/function names accurately reflect their behavior:
