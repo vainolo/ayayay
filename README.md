@@ -22,6 +22,17 @@ This repo is a single place to store GitHub Copilot assets you use regularly so 
 
 See `.github/README.md` and each subdirectory `README.md` for detailed formats and examples.
 
+## Self-Improvement Prompt
+
+The repository includes a **self-improvement prompt** (`.github/prompts/self-improvement.prompt.md`) for meta-cognitive analysis. Invoke it directly in an active conversation:
+
+**Use the self-improvement prompt to:**
+- 📊 Analyze your performance across 6 dimensions (accuracy, efficiency, code quality, communication, proactivity, safety)
+- 🔍 Identify success and failure patterns from the conversation
+- 📝 Review and update configuration files based on learnings
+
+**See**: [`.github/prompts/self-improvement.prompt.md`](.github/prompts/self-improvement.prompt.md) for full details.
+
 ## Naming Conventions
 
 - Use lowercase and kebab-case for file/folder names.
