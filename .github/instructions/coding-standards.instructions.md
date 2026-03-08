@@ -59,3 +59,11 @@ When troubleshooting failures:
 - During debugging, prefer minimal fixes in the canonical script or module already responsible for the behavior. Do not add new helper/installer scripts unless the user asks for them.
 - When there is a single source of truth for behavior (for example, one script that manages NSG rules), place the change there rather than layering workaround logic in other scripts.
 - **Respect explicit user directives**: If user states a completion criterion (e.g., "continue until X works"), treat as binding requirement, not optional goal. Escalate with clear evidence if completion is not feasible.
+
+## Response Formatting
+
+- When referencing files or line numbers in responses, use workspace-relative markdown links and avoid absolute paths.
+
+## Script Generation
+
+- Prefer standalone script files and invoke them from orchestration code. Use inline/embedded scripts only when unavoidable.
