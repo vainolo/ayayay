@@ -4,6 +4,10 @@ applyTo: "**/*.ps1"
 
 # PowerShell Script Patterns
 
+## Script Safety Defaults
+
+- Prefer strict, fail-fast script defaults unless a script has a specific reason not to: `Set-StrictMode -Version Latest` and `$ErrorActionPreference = "Stop"`.
+
 ## Terminal & Process Management
 
 When spawning new terminal windows on Windows:
@@ -32,3 +36,25 @@ When spawning new terminal windows on Windows:
 - Conditionally pass auth parameters to `Connect-AzAccount` based on config presence: `$connectParams = @{}; if ($config.tenantId) { $connectParams["TenantId"] = $config.tenantId }`
 - Use splatting (`@connectParams`) to pass variable sets of parameters
 - Check for existing context before forcing re-authentication: `Get-AzContext -ErrorAction SilentlyContinue`
+
+## Long-Running Operations & Monitoring
+
+When handling long-running processes (infrastructure deployments, provisioning, downloads):
+
+- **Prefer log files over terminal output buffering**: For operations taking >30 seconds, read log files directly instead of relying on terminal output. Terminal buffering can mask progress and delay identification of issues.
+  
+- **Read logs from disk for status verification**: Instead of examining terminal output history, use `Get-Item logfile | Select-Object Length, LastWriteTime` to check if operations completed, or `Get-Content logfile -Tail N` to see recent entries.
+
+- **Pre-examine deployment scripts before execution**: Before running infrastructure deployment scripts, inspect the script to understand required configuration keys, resource dependencies, and expected outcomes. This prevents discovering missing config after lengthy operations fail.
+
+- **Use temporary polling with file-based validation**: When monitoring async operations, periodically read log files instead of continuous terminal output monitoring. Check both file size changes and timestamp updates to determine if operation is still executing.
+
+- **Document operation timeline expectations**: For predictable phases (VM creation ~1-2 min, software provisioning ~5-10 min), set realistic timeouts and avoid polling too frequently.
+
+## Log File Conventions
+
+Scripts that produce logs should:
+- Write logs to the path derived from configuration (e.g., `Initialize-Log` with `logPath` config)
+- Use consistent timestamp format (e.g., `[yyyy-MM-dd HH:mm:ss]`)
+- Provide completion markers (e.g., `=== Provisioning Complete ===`) for easy log validation
+- Ensure log writes are not buffered excessively; flush periodically for real-time visibility

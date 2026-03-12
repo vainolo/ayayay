@@ -353,6 +353,8 @@ Before implementing fixes, quickly verify:
 2. Am I changing the canonical source-of-truth file for this behavior?
 3. Am I creating any new file the user did not ask for?
 4. Have I validated the smallest viable fix before expanding scope?
+5. If I opened temporary access (NSG, firewall, tunnels), did I close it even on failure?
+6. For automated SSH checks, did I avoid interactive prompts (host key acceptance)?
 
 ---
 

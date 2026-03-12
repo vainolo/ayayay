@@ -95,6 +95,10 @@ Skills are ideal for:
 
 `<skill-name>/SKILL.md`
 
+## Included Skills
+
+- `example-skill/SKILL.md`
+
 ## Sample
 
 **Directory: `database-migration/`**
